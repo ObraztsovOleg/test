@@ -8,12 +8,14 @@ services:
         ports:
             - "127.0.0.1:5100:5100"
         restart: always
-    # app:
-    #     build:
-    #         dockerfile: ./service/Dockerfile
-    #     restart: always
-    #     deploy:
-    #         replicas: 4
+    app:
+        build:
+            dockerfile: ./service/Dockerfile
+        restart: always
+        deploy:
+            replicas: 4
+        volumes:
+            - ./stdout.log:/stdout.log
     sleeping_app:
         build:
             dockerfile: ./sleeping_service/Dockerfile

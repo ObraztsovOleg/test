@@ -7,7 +7,9 @@ import { Console } from 'console';
 import fs from 'fs';
 
 const logger = new Console({
-  stdout: fs.createWriteStream("stdout.log")
+  stdout: fs.createWriteStream("stdout.log", {
+      flags: 'a'
+  })
 });
 const DELAY = 10000;  // in ms
 let data = {
