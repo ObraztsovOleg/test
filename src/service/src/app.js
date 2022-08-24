@@ -1,4 +1,4 @@
-export default (express, bodyParser, CORS) => {
+export default (express, bodyParser, CORS, data) => {
     const app = express();
     
     app
@@ -7,6 +7,7 @@ export default (express, bodyParser, CORS) => {
       .get('/', async (req, res) => {
         try {
             res.status(200).json({message: "Hello\n\r"});
+            data.req_num++;
         } catch (e) {
             return res.status(500).json(e);
         }

@@ -1,42 +1,24 @@
-version: '3.4'
-
+version: '3.9'
 services:
     nginx:
         build:
             dockerfile: ./nginx/Dockerfile
         depends_on:
-            - api
+            - app
         ports:
             - "127.0.0.1:5100:5100"
         restart: always
-
-    app_1:
+    # app:
+    #     build:
+    #         dockerfile: ./service/Dockerfile
+    #     restart: always
+    #     deploy:
+    #         replicas: 4
+    sleeping_app:
         build:
-            dockerfile: ./service/Dockerfile
-        ports:
-          - "4001:3000"
+            dockerfile: ./sleeping_service/Dockerfile
         restart: always
-    app_2:
-        build:
-            dockerfile: ./service/Dockerfile
-        ports:
-          - "4002:3000"
-        restart: always
-    app_3:
-        build:
-            dockerfile: ./service/Dockerfile
-        ports:
-          - "4003:3000"
-        restart: always
-    app_4:
-        build:
-            dockerfile: ./service/Dockerfile
-        ports:
-          - "4004:3000"
-        restart: always
-    api_5:
-        build:
-            dockerfile: ./service/Dockerfile
-        ports:
-          - "4005:3000"
-        restart: always
+        deploy:
+            replicas: 1
+        volumes:
+            - ./stdout.log: /stdout.log
