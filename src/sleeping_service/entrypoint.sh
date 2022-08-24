@@ -8,12 +8,17 @@ while [[ ! $diff = 100 ]]; do
     diff=$((($date_2 - $date_1)))
 done
 
-
-kill -9 $(lsof -t -i :3000) &
-echo "sleep"
 if [[ $diff = 100 ]]; then
-
-  sleep 100 &
+  echo "sleep"
+  kill -9 $(lsof -t -i :3000) &
 fi
-echo "wake up"
-npm start
+
+while [[ ! $diff = 200 ]]; do
+    date_2=$(date +%s);
+    diff=$((($date_2 - $date_1)))
+done
+
+if [[ $diff = 200 ]]; then
+  echo "wake up"
+  npm start
+fi

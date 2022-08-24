@@ -21,4 +21,4 @@ services:
         deploy:
             replicas: 1
         volumes:
-            - ./stdout.log: /stdout.log
+            - ./stdout.log:/stdout.log
