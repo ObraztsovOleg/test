@@ -1,0 +1,9 @@
+{
+    "upstream": [
+        "http://src-sleeping_app-1:3000",
+        "http://src-app-1:3000",
+        "http://src-app-2:3000",
+        "http://src-app-3:3000",
+        "http://src-app-4:3000"
+    ]
+}

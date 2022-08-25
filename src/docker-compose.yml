@@ -1,13 +1,13 @@
 version: '3.9'
 services:
-    nginx:
-        build:
-            dockerfile: ./nginx/Dockerfile
-        depends_on:
-            - app
-        ports:
-            - "127.0.0.1:5100:5100"
-        restart: always
+    # nginx:
+    #     build:
+    #         dockerfile: ./nginx/Dockerfile
+    #     depends_on:
+    #         - app
+    #     ports:
+    #         - "127.0.0.1:5100:5100"
+    #     restart: always
     app:
         build:
             dockerfile: ./service/Dockerfile
@@ -24,3 +24,17 @@ services:
             replicas: 1
         volumes:
             - ./stdout.log:/stdout.log
+    proxy:
+        build:
+            dockerfile: ./proxy_server/Dockerfile
+        depends_on:
+            - app
+        ports:
+            - "127.0.0.1:5100:5100"
+        restart: always
+        links:
+            - src-sleeping_app-1
+            - src-app-1
+            - src-app-2
+            - src-app-3
+            - src-app-4
